@@ -1,25 +1,20 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        int n = numbers.size();
-
-        for (int i = 0; i < n; i++) {
-            int complement = target - numbers[i];
-            
-            // Binary search for complement in range (i+1 ... n-1)
-            int low = i + 1, high = n - 1;
-            while (low <= high) {
-                int mid = low + (high - low) / 2;
-                if (numbers[mid] == complement) {
-                    return {i + 1, mid + 1};  // +1 for 1-based indexing
-                } else if (numbers[mid] < complement) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
+       
+       int i =0;
+       int j = numbers.size() -1 ;
+       while(i<j){
+            if(numbers[i]+numbers[j]>target){
+                j--;
             }
-        }
-
-        return {}; // Should never happen, since one solution always exists
+            else if(numbers[i] + numbers[j] == target){
+                return {i+1,j+1};
+            }
+            else {
+                i++;
+            }
+       }
+       return {};
     }
 };
